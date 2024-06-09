@@ -1,0 +1,82 @@
+# SQL QUERIES
+select * from onionprice
+
+alter table onionprice
+add Year nvarchar(40)
+
+update onionprice
+set Year=year(Price_Date)
+ 
+alter table onionprice
+add month nvarchar(10)
+
+update onionprice
+set [month] =month(Price_date)
+
+ALTER TABLE ONIONPRICE
+ADD Average_price nvarchar(10)
+
+update onionprice
+set average_price = ([Min_Price_Rs_Quintal]+[Max_Price_Rs_Quintal])/2
+
+alter table onionprice 
+add day nvarchar(10)
+
+update onionprice
+set day=day(Price_date)
+
+ALTER TABLE [dbo].[onionprice]
+ALTER COLUMN [Average_price] INT;
+
+SELECT 
+    [Year], 
+    AVG([Average_price]) AS Average_Price_Rs_Quintal
+FROM 
+    [dbo].[onionprice]
+GROUP BY 
+    [Year]
+ORDER BY
+	YEAR
+
+
+SELECT 
+    [MONTH], 
+    AVG([Average_price]) AS Average_Price_Rs_Quintal
+FROM 
+    [dbo].[onionprice]
+GROUP BY 
+    [MONTH]
+ORDER BY
+	month
+
+
+
+SELECT 
+    [MONTH], 
+    AVG([Average_price]) AS Average_Price_Rs_Quintal
+FROM 
+    [dbo].[onionprice]
+WHERE 
+	YEAR ='2024'
+GROUP BY 
+    [MONTH]
+ORDER BY
+	MONTH 
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
